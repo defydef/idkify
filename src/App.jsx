@@ -1,26 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import getOptions from "./services/apiOptions";
 
 function App() {
   const [choice, setChoice] = useState("");
+  const [randomChoices, setRandomChoices] = useState([]);
 
-  const randomChoices = [
-    "Bebek Kaleyo",
-    "McD",
-    "Sate Arudam",
-    "Ayam Jatinangor",
-    "Talago Nasi Padang",
-    "Teras Umma",
-    "Ketoprak Mang Iing",
-    "KFC",
-    "Ronggeng Chinese Food",
-    "Nasi Goreng Babat Gongso",
-    "Mie Aceh Golden Vienna",
-    "Soto Mie Bogor Granada Square",
-    "Pecel Pincuk Ibu Ida",
-    "Nasi Bebek 86",
-    "Bakmi Bangka Kolam Renang",
-    "Kwetiau Akang",
-  ];
+  useEffect(function () {
+    getOptions().then((data) => setRandomChoices(data.optionItems));
+  }, []);
 
   function getRandomChoice(arr) {
     const randomIndex = Math.floor(Math.random() * arr.length);
