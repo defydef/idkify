@@ -6,5 +6,6 @@ export default async function getOptions() {
     console.error(error);
     throw new Error("Options data could not be loaded");
   }
-  return data[0];
+  const { optionItems } = data[0];
+  return optionItems;
 }

@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react";
-import getOptions from "./services/apiOptions";
+import { useState } from "react";
+import { useOptions } from "./hooks/useOptions";
 
 function App() {
   const [choice, setChoice] = useState("");
-  const [randomChoices, setRandomChoices] = useState([]);
-
-  useEffect(function () {
-    getOptions().then((data) => setRandomChoices(data.optionItems));
-  }, []);
+  const { randomChoices } = useOptions();
 
   function getRandomChoice(arr) {
     const randomIndex = Math.floor(Math.random() * arr.length);
